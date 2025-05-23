@@ -2,12 +2,17 @@
 
 import { useState } from 'react';
 
+interface Message {
+  role: 'user' | 'bot';
+  text: string;
+}
+
 export default function PlatformChatbot() {
   const [step, setStep] = useState(0);
-  const [messages, setMessages] = useState([]);
-  const [formData, setFormData] = useState({});
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [formData, setFormData] = useState<Record<string, string | boolean>>({});
   const [inputValue, setInputValue] = useState("");
-  const [suggestion, setSuggestion] = useState(null);
+  const [suggestion, setSuggestion] = useState<string | null>(null);
 
   const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://platform-suggestion-api.onrender.com";
 
@@ -58,7 +63,7 @@ export default function PlatformChatbot() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-pink-50">
         <div className="rounded-xl p-6 bg-white shadow-lg text-center max-w-md w-full">
-          <h2 className="text-2xl font-bold text-pink-800">Recommended Platform</h2>
+          <h2 className="text-2xl font-bold text-pink-800">🌸 Recommended Platform 🌸</h2>
           <p className="mt-4 text-lg text-pink-700">{suggestion}</p>
         </div>
       </div>
